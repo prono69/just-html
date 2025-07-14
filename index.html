@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Nikita">
+    <meta name="description" content="Portfolio of Nikita, a passionate developer creating innovative web solutions.">
+    <meta name="keywords" content="portfolio, developer, web development, Nikita, projects, contact">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Nikita - Portfolio">
+    <meta property="og:description" content="Explore the projects and skills of Nikita, a passionate developer.">
+    <meta property="og:image" content="https://envs.sh/i4-.jpg">
+    <meta property="og:url" content="https://your-portfolio.vercel.app">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nikita - Portfolio">
+    <meta name="twitter:description" content="Explore the projects and skills of Nikita, a passionate developer.">
+    <meta name="twitter:image" content="https://your-image-cdn.com/your-profile-pic.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://your-portfolio.vercel.app" />
+    
+    <!-- Preload Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" as="script">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" as="script">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <title>Nikita - Portfolio</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (Geist) -->
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Nikita",
+        "url": "https://your-portfolio.vercel.app",
+        "sameAs": [
+            "https://github.com/prono69",
+            "https://linkedin.com/in/yourusername"
+        ],
+        "jobTitle": "Web Developer"
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary: #00ff80;
+            --primary-dark: #00cc66;
+            --bg-dark: #1a1a1a;
+            --bg-darker: #0d0d0d;
+            --text-light: #ffffff;
+            --text-gray: #d1d5db;
+        }
+        
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            overflow-x: hidden;
+        }
+        
+        .section {
+            min-height: 100dvh;
+            padding: 4rem 2rem;
+            scroll-margin-top: 2rem;
+        }
+        
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 255, 128, 0.2);
+        }
+        
+        .btn {
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            min-width: 48px;
+            min-height: 48px;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: var(--primary);
+        }
+        
+        .btn:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        .profile-pic {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 150px;
+            height: 150px;
+        }
+        
+        .profile-pic:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 255, 128, 0.3);
+        }
+        
+        .hero-bg {
+            background: linear-gradient(45deg, #4b0082, #6b21a8);
+            background-size: 200% 200%;
+            animation: gradientShift 10s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Typing Animation */
+        .name {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid var(--primary);
+            animation: typing 2s steps(30, end) forwards, blink 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--primary); }
+        }
+        
+        /* Accessibility */
+        @media (prefers-reduced-motion) {
+            .name {
+                animation: none;
+                border-right: none;
+                white-space: normal;
+            }
+            
+            .hero-bg {
+                animation: none;
+            }
+            
+            .project-card:hover {
+                transform: none;
+            }
+        }
+        
+        /* Focus states */
+        a:focus, button:focus, input:focus, textarea:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        /* Form styles */
+        .error-message {
+            color: #f87171;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        input:invalid, textarea:invalid {
+            border-color: #f87171;
+        }
+        
+        input:invalid ~ .error-message,
+        textarea:invalid ~ .error-message {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to Content Link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-gray-800 focus:text-white focus:px-4 focus:py-2 focus:rounded">
+        Skip to content
+    </a>
+
+    <!-- Navigation -->
+    <nav aria-label="Main navigation" class="fixed w-full bg-gray-900 z-10">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-green-400">Nikita</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="text-white hover:text-green-400">About</a>
+                <a href="#projects" class="text-white hover:text-green-400">Projects</a>
+                <a href="#contact" class="text-white hover:text-green-400">Contact</a>
+            </div>
+            <button id="mobile-menu-button" aria-label="Toggle mobile menu" class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main id="main-content">
+        <section id="hero" class="section flex items-center justify-center text-center hero-bg pt-16">
+            <div class="animate-hero text-center">
+                <img src="https://envs.sh/i4-.jpg" alt="Nikita" 
+                     class="profile-pic rounded-full mx-auto mb-6" 
+                     width="150" height="150" loading="eager">
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold mb-4">
+                    Hi, I am <span class="name">Nikita</span>
+                </h1>
+                <p class="text-lg md:text-2xl mb-6 max-w-2xl mx-auto">
+                    A passionate developer creating modern, accessible web experiences.
+                </p>
+                <div class="flex justify-center gap-4">
+                    <a href="#projects" class="btn bg-green-400 text-black font-semibold py-3 px-6 rounded-lg">
+                        View My Work
+                    </a>
+                    <a href="#contact" class="btn bg-transparent border-2 border-green-400 text-green-400 font-semibold py-3 px-6 rounded-lg">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section bg-gray-900">
+            <div class="max-w-4xl mx-auto animate-section">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-6 text-green-400">About Me</h2>
+                <p class="text-lg mb-4">
+                    I'm a full-stack developer with 5+ years of experience building modern web applications. 
+                    I specialize in JavaScript, React, Node.js, and accessible UI/UX design.
+                </p>
+                <p class="text-lg mb-8">
+                    My approach combines technical expertise with clean design principles to create fast, 
+                    responsive, and inclusive digital experiences. When I'm not coding, you can find me 
+                    hiking, contributing to open source, or experimenting with new technologies.
+                </p>
+                
+                <h3 class="text-2xl font-semibold mb-4 text-green-400">Skills</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-800 p-4 rounded-lg text-center">JavaScript</div>
+                    <div class="bg-gray-800 p-4 rounded-lg text-center">React</div>
+                    <div class="bg-gray-800 p-4 rounded-lg text-center">Node.js</div>
+                    <div class="bg-gray-800 p-4 rounded-lg text-center">TypeScript</div>
+                    <div class="bg-gray-800 p-4 rounded-lg text-center">Tailwind CSS</div>
+                    <div class="bg-gray-800 p-4 rounded-lg text-center">Accessibility</div>
+                    <div class="bg-gray-800 p-4 rounded-lg text-center">GraphQL</div>
+                    <div class="bg-gray-800 p-4 rounded-lg text-center">AWS</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section bg-gray-800">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-green-400 text-center">Featured Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Project 1 -->
+                    <article class="project-card bg-gray-700 p-6 rounded-lg animate-section">
+                        <h3 class="text-2xl font-semibold mb-2">E-Commerce Platform</h3>
+                        <p class="mb-4">A full-stack e-commerce solution with React, Node.js, and Stripe integration.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-600 px-2 py-1 rounded">React</span>
+                            <span class="text-xs bg-gray-600 px-2 py-1 rounded">Node.js</span>
+                            <span class="text-xs bg-gray-600 px-2 py-1 rounded">MongoDB</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://github.com/prono69/ecommerce-platform" target="_blank" 
+                               rel="noopener noreferrer" class="text-green-400 hover:underline">
+                                View Code
+                            </a>
+                            <a href="https://ecommerce-demo.vercel.app" target="_blank" 
+                               rel="noopener noreferrer" class="text-green-400 hover:underline">
+                                Live Demo
+                            </a>
+                        </div>
+                    </article>
+                    
+                    <!-- Project 2 -->
+                    <article class="project-card bg-gray-700 p-6 rounded-lg animate-section">
+                        <h3 class="text-2xl font-semibold mb-2">Task Management App</h3>
+                        <p class="mb-4">A collaborative task manager with real-time updates using Firebase.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-600 px-2 py-1 rounded">React</span>
+                            <span class="text-xs bg-gray-600 px-2 py-1 rounded">Firebase</span>
+                            <span class="text-xs bg-gray-600 px-2 py-1 rounded">Tailwind</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://github.com/prono69/task-manager" target="_blank" 
+                               rel="noopener noreferrer" class="text-green-400 hover:underline">
+                                View Code
+                            </a>
+                            <a href="https://tasks-demo.vercel.app" target="_blank" 
+                               rel="noopener noreferrer" class="text-green-400 hover:underline">
+                                Live Demo
+                            </a>
+                        </div>
+                    </article>
+                    
+                    <!-- Project 3 -->
+                    <article class="project-card bg-gray-700 p-6 rounded-lg animate-section">
+                        <h3 class="text-2xl font-semibold mb-2">Portfolio Template</h3>
+                        <p class="mb-4">An open-source portfolio template for developers with GSAP animations.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-600 px-2 py-1 rounded">HTML/CSS</span>
+                            <span class="text-xs bg-gray-600 px-2 py-1 rounded">GSAP</span>
+                            <span class="text-xs bg-gray-600 px-2 py-1 rounded">Tailwind</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://github.com/prono69/portfolio-template" target="_blank" 
+                               rel="noopener noreferrer" class="text-green-400 hover:underline">
+                                View Code
+                            </a>
+                            <a href="https://portfolio-template.vercel.app" target="_blank" 
+                               rel="noopener noreferrer" class="text-green-400 hover:underline">
+                                Live Demo
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section bg-gray-900">
+            <div class="max-w-2xl mx-auto animate-section">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-6 text-green-400 text-center">Get in Touch</h2>
+                <p class="text-lg mb-8 text-center">Have a project in mind or want to connect? Send me a message!</p>
+                
+                <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-6">
+                    <div>
+                        <label for="name" class="block mb-2 text-sm font-medium">Your Name</label>
+                        <input type="text" id="name" name="name" required
+                               class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-green-400"
+                               aria-required="true" aria-describedby="name-error">
+                        <div id="name-error" class="error-message">Please enter your name</div>
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium">Your Email</label>
+                        <input type="email" id="email" name="email" required
+                               class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-green-400"
+                               aria-required="true" aria-describedby="email-error">
+                        <div id="email-error" class="error-message">Please enter a valid email</div>
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block mb-2 text-sm font-medium">Your Message</label>
+                        <textarea id="message" name="message" rows="5" required
+                                  class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-green-400"
+                                  aria-required="true" aria-describedby="message-error"></textarea>
+                        <div id="message-error" class="error-message">Please enter your message</div>
+                    </div>
+                    
+                    <button type="submit" class="btn w-full bg-green-400 text-black font-semibold py-3 px-6 rounded-lg hover:bg-green-500 transition-colors">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-8 text-center">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://github.com/prono69" target="_blank" rel="noopener noreferrer" 
+                   class="text-gray-400 hover:text-green-400 transition-colors" aria-label="GitHub">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" 
+                   class="text-gray-400 hover:text-green-400 transition-colors" aria-label="LinkedIn">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/nikitaweeb" target="_blank" rel="noopener noreferrer" 
+                   class="text-gray-400 hover:text-green-400 transition-colors" aria-label="Twitter">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="text-gray-400">© <span id="year"></span> Nikita. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- GSAP Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.createElement('div');
+        mobileMenu.className = 'md:hidden fixed inset-0 bg-gray-900 z-20 flex flex-col items-center justify-center hidden';
+        mobileMenu.innerHTML = `
+            <button aria-label="Close menu" class="absolute top-4 right-4 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <nav aria-label="Mobile navigation" class="flex flex-col items-center space-y-8">
+                <a href="#about" class="text-2xl text-white hover:text-green-400">About</a>
+                <a href="#projects" class="text-2xl text-white hover:text-green-400">Projects</a>
+                <a href="#contact" class="text-2xl text-white hover:text-green-400">Contact</a>
+            </nav>
+        `;
+        
+        mobileMenu.querySelector('button').addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+        
+        document.body.appendChild(mobileMenu);
+        
+        // Check for reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        if (!prefersReducedMotion) {
+            // Register ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Configure ScrollTrigger for better performance
+            ScrollTrigger.config({
+                limitCallbacks: true,
+                ignoreMobileResize: true
+            });
+            
+            // Hero section animation
+            gsap.from(".animate-hero .profile-pic", {
+                opacity: 0,
+                scale: 0.5,
+                duration: 1,
+                ease: "back.out(1.7)"
+            });
+            
+            gsap.from(".animate-hero p", {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                delay: 2.2,
+                ease: "power2.out"
+            });
+            
+            gsap.from(".animate-hero .btn", {
+                opacity: 0,
+                y: 20,
+                duration: 0.8,
+                delay: 2.4,
+                ease: "power2.out",
+                stagger: 0.1
+            });
+            
+            // About section animation
+            gsap.from("#about .animate-section", {
+                opacity: 0,
+                x: -50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#about",
+                    start: "top 80%",
+                    toggleActions: "play none none none",
+                    markers: false
+                }
+            });
+            
+            // Projects section animation
+            gsap.from(".project-card", {
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                stagger: 0.15,
+                scrollTrigger: {
+                    trigger: "#projects",
+                    start: "top 80%",
+                    toggleActions: "play none none none",
+                    markers: false
+                }
+            });
+            
+            // Contact section animation
+            gsap.from("#contact .animate-section", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#contact",
+                    start: "top 80%",
+                    toggleActions: "play none none none",
+                    markers: false
+                }
+            });
+        }
+        
+        // Form validation
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                let isValid = true;
+                
+                // Validate name
+                const name = document.getElementById('name');
+                if (!name.value.trim()) {
+                    document.getElementById('name-error').style.display = 'block';
+                    name.setAttribute('aria-invalid', 'true');
+                    isValid = false;
+                } else {
+                    document.getElementById('name-error').style.display = 'none';
+                    name.setAttribute('aria-invalid', 'false');
+                }
+                
+                // Validate email
+                const email = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email.value)) {
+                    document.getElementById('email-error').style.display = 'block';
+                    email.setAttribute('aria-invalid', 'true');
+                    isValid = false;
+                } else {
+                    document.getElementById('email-error').style.display = 'none';
+                    email.setAttribute('aria-invalid', 'false');
+                }
+                
+                // Validate message
+                const message = document.getElementById('message');
+                if (!message.value.trim()) {
+                    document.getElementById('message-error').style.display = 'block';
+                    message.setAttribute('aria-invalid', 'true');
+                    isValid = false;
+                } else {
+                    document.getElementById('message-error').style.display = 'none';
+                    message.setAttribute('aria-invalid', 'false');
+                }
+                
+                if (!isValid) {
+                    e.preventDefault();
+                    // Focus on first invalid field
+                    const firstInvalid = form.querySelector('[aria-invalid="true"]');
+                    if (firstInvalid) {
+                        firstInvalid.focus();
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
